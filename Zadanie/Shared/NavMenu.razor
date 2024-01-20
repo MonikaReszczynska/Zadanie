@@ -1,7 +1,21 @@
 ﻿<MudNavMenu>
-    <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-    <MudNavLink Href="/Counter" Match="NavLinkMatch.Prefix">Counter</MudNavLink>
-    <MudNavLink Href="/about" Match="NavLinkMatch.Prefix">About</MudNavLink>
+    <MudContainer Class="icon-container" Style="text-align: center; margin: 10px 0px 50px 0px;  " >
+        <MudIcon Icon="@Icons.Material.Outlined.Computer" Size="Size.Large" Title="System" Style="background-color: white; padding: 1px; border-radius: 20%; color: black;" />
+    </MudContainer>
+
+    <MudContainer Style="text-align: center;">
+        <MudNavLink Href="/Counter" Style="background-color:white; border-radius: 10%; width:fit-content;">
+            <MudIcon Icon="@Icons.Material.Outlined.StarBorder" Size="Size.Large" Style=" color: black; align-self:center" />
+            <MudText Style="color:black; font-size:small;">Zadanie1</MudText>
+        </MudNavLink>
+        
+        <MudNavLink Href="/fetchdata" Disabled="true">
+            <MudIconButton Icon="@Icons.Material.Outlined.StarBorder"  Size="Size.Large" Edge="Edge.Start"  Href="/fetchdata" Style="display:flex; align-self:center; color: white; " />
+            <MudText Style="color:white; font-size:small;">Zadanie2</MudText>
+        </MudNavLink>
+        
+    </MudContainer>
+    
 </MudNavMenu>
 
 @code {
