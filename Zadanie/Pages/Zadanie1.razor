@@ -1,5 +1,28 @@
-﻿<h3>Zadanie1</h3>
+﻿@page "/zadanie1"
 
-@code {
+<PageTitle>Zadanie1</PageTitle>
 
+<h1>Zadanie1</h1>
+
+<Users  />
+<Groups />
+
+
+   
+
+    @code {
+    private Users usersComponent;
+    private Groups groupsComponent;
+
+    private void HandleUsersUpdated(List<string> updatedUsers)
+    {
+        // Handle updated users if needed
+        StateHasChanged();
+    }
+
+    private void HandleGroupsUpdated(List<string> updatedGroups)
+    {
+        // Handle updated groups if needed
+        StateHasChanged();
+    }
 }

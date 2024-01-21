@@ -1,5 +1,51 @@
-﻿<h3>Users</h3>
+﻿<!-- Users.razor -->
+@page "/users"
+
+<h3>Users Component</h3>
+
+
+<MudDropContainer T="DropItem" Items="_items" ItemsSelector="@((item,dropzone) => item.Selector == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-wrap flex-grow-1">
+    <ChildContent>
+        @for (int i = 1; i < 3; i++)
+        {
+            var dropzone = i.ToString();
+            <MudPaper Class="ma-4 flex-grow-1">
+                <MudList Clickable="true" Class="d-flex flex-column mud-height-full">
+                    <MudListSubheader>Drop Zone @dropzone</MudListSubheader>
+                        <MudDropZone T="DropItem" Identifier="@dropzone" Class="flex-grow-1" />
+                    </MudList>
+                </MudPaper>
+        }
+    </ChildContent>
+    <ItemRenderer>
+        <MudCard>
+            <MudCardContent>
+                <MudText>@context.Name</MudText>
+                    <MudIcon Icon="@Icons.Material.Filled.Navigation" Title="Nav" />
+                    <MudText  Typo="Typo.body2">@context.City</MudText>
+            </MudCardContent>
+        </MudCard>
+    </ItemRenderer>
+</MudDropContainer>
 
 @code {
+    private void ItemUpdated(MudItemDropInfo<DropItem> dropItem)
+    {
+        dropItem.Item.Selector = dropItem.DropzoneIdentifier;
+    }
 
+    private List<DropItem> _items = new()
+    {
+        new DropItem(){ Name = "Adam Kowalski", City="Radom", Selector = "1" },
+        new DropItem(){ Name = "Piotr Piotrowski", City="Radom", Selector = "1" },
+        new DropItem(){ Name = "Magda Nowakowska", City="Warszawa", Selector = "1" },
+        new DropItem(){ Name = "Jan Nowak", City="Radom", Selector = "2" },
+    };
+
+    public class DropItem
+    {
+        public string Name { get; init; }
+        public string City { get; set; }
+        public string Selector { get; set; }
+    }
 }

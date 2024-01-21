@@ -1,5 +1,70 @@
-﻿<h3>Groups</h3>
+﻿<!-- Groups.razor -->
+@page "/groups"
+
+<h3>Groups Component</h3>
+
+<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+    <MudTabPanel Icon="@Icons.Material.Outlined.Star"  Text="Grupa 1">
+        <MudText>Content One</MudText>
+        <MudDropContainer T="DropItem" Items="_items" ItemsSelector="@((item, dropzone) => item.Selector == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-wrap flex-grow-1">
+            <ChildContent>
+                <MudPaper Class="ma-4 flex-grow-1">
+                    <MudList Clickable="true" Class="d-flex flex-column mud-height-full">
+                        <MudListSubheader>Drop Zone Groups</MudListSubheader>
+                        <MudDropZone T="DropItem" Identifier="Groups" Class="flex-grow-1" />
+                    </MudList>
+                </MudPaper>
+            </ChildContent>
+            <ItemRenderer>
+                <MudListItem Text="@context.Name" />
+            </ItemRenderer>
+        </MudDropContainer>
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Outlined.FilterVintage" Text="Grupa 2">
+        <MudText>Content Two</MudText>
+        <MudDropContainer T="DropItem" Items="_items" ItemsSelector="@((item, dropzone) => item.Selector == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-wrap flex-grow-1">
+            <ChildContent>
+                <MudPaper Class="ma-4 flex-grow-1">
+                    <MudList Clickable="true" Class="d-flex flex-column mud-height-full">
+                        <MudListSubheader>Drop Zone Groups</MudListSubheader>
+                        <MudDropZone T="DropItem" Identifier="Groups" Class="flex-grow-1" />
+                    </MudList>
+                </MudPaper>
+            </ChildContent>
+            <ItemRenderer>
+                <MudListItem Text="@context.Name" />
+            </ItemRenderer>
+        </MudDropContainer>
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Outlined.EmojiEmotions" Text="Grupa 3">
+        <MudText>Content Three</MudText>
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Filled.SignalCellular4Bar" Text="Grupa 4">
+        <MudText>Content Three</MudText>
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Filled.Square" Text="Grupa 5">
+        <MudText>Content Three</MudText>
+    </MudTabPanel>
+</MudTabs>
+
+
 
 @code {
+    private void ItemUpdated(MudItemDropInfo<DropItem> dropItem)
+    {
+        dropItem.Item.Selector = dropItem.DropzoneIdentifier;
+        
+    }
 
+    private List<DropItem> _items = new()
+    {
+        new DropItem(){ Name = "Item 4", Selector = "Groups" },
+        new DropItem(){ Name = "Item 5", Selector = "Groups" },
+    };
+
+    public class DropItem
+    {
+        public string Name { get; init; }
+        public string Selector { get; set; }
+    }
 }
